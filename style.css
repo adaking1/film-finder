@@ -1,0 +1,82 @@
+/* Estilos globales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Encabezado */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+#search {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#search-button {
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Cajas alrededor de elementos */
+.movie-info {
+    display: flex;
+    align-items: center;
+}
+
+.movie-image img {
+    max-width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.movie-details {
+    flex: 1;
+}
+
+/* Estilos para el título */
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Estilos para los encabezados (h2) */
+h2 {
+    color: #333;
+    border-bottom: 2px solid #ff5722;
+    padding-bottom: 5px;
+}
+
+/* Estilos para los spans con información */
+span {
+    font-weight: bold;
+}
+
+/* Enlaces */
+a {
+    color: #ff5722;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
