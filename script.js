@@ -17,20 +17,21 @@ function searchVideos(video) {
 
     fetch (ytUrlPrefix + videoName + key)
     .then (function(response){
-        return response.json();
+      return response.json();
     })
     .then(function(data){
-        console.log(data.items[0].id.videoId);
-        videoId = data.items[0].id.videoId;
-        console.log(videoId);
-        if (player){
-          player.destroy();
-          console.log("DESTROY");
-          videoPlay(videoId);
-        }
-        else {
-          iFrameAPIcall();
-        }
+      console.log(data);
+      console.log(data.items[0].id.videoId);
+      videoId = data.items[0].id.videoId;
+      console.log(videoId);
+      if (player){
+        player.destroy();
+        console.log("DESTROY");
+        videoPlay(videoId);
+      }
+      else {
+        iFrameAPIcall();
+      }
     })
     
     

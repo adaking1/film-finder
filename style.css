@@ -80,3 +80,8 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+#youtube-trailer {
+display: flex;
+justify-content: center;
+}
