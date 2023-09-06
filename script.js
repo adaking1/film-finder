@@ -1,8 +1,11 @@
 var searchText = document.querySelector("#search");
 var searchButton = document.querySelector("#search-button");
 var ytPlayer = document.querySelector("#player");
-var videoId
+var videoId;
+var player;
 
+// this function uses youtube's data api to search for the video id of the movie title that was searched
+// it then starts the youtube player api call
 function searchVideos(video) {
   if (video.includes(" ")) {
     video = video.replace(" ", "+");
@@ -10,24 +13,18 @@ function searchVideos(video) {
     video = video.toLowerCase();
     var key = "&key=AIzaSyDefjXnp5D479WhFVN5_4WXCEdQ79NLuRU";
     var ytUrlPrefix = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=";
-    var videoName = video + "+trailer"
+    var videoName = video + "+movie+trailer"
 
-    console.log(video);
-    console.log(ytUrlPrefix + videoName );
 
     fetch (ytUrlPrefix + videoName + key)
     .then (function(response){
       return response.json();
     })
     .then(function(data){
-      console.log(data);
-      console.log(data.items[0].id.videoId);
       videoId = data.items[0].id.videoId;
-      console.log(videoId);
       if (player){
         player.destroy();
-        console.log("DESTROY");
-        videoPlay(videoId);
+        onYouTubeIframeAPIReady();
       }
       else {
         iFrameAPIcall();
@@ -37,8 +34,10 @@ function searchVideos(video) {
     
 }
 
+// The next two functions were sourced from youtube's api documentation
+
+// this function loads the youtube iframe api code
 function iFrameAPIcall(){
-// 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
   var firstScriptTag = document.getElementsByTagName('script')[0];
 
@@ -47,49 +46,27 @@ function iFrameAPIcall(){
 
 }
 
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
 
+// this function is triggered when the youtube iframe api call is complete
+// It creates the youtube player in the iframe using the video id retreived from the data api call
 function onYouTubeIframeAPIReady() {
-  console.log("Ready");
-  console.log(videoId);
-  videoPlay(videoId);
-}
-
-function onPlayerReady(event) {
-  event.target.playVideo();
-}
-
-  var done = false;
-function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    done = true;
-  }
-}
-function stopVideo() {
-  player.stopVideo();
-}
-
-
-var player;
-function videoPlay(id){
-  console.log(player);
-  console.log(id);
   player = new YT.Player('player', {
     height: '390',
     width: '640',
-    videoId: id,
+    videoId: videoId,
     playerVars: {
       'playsinline': 1
     },
-    events: {
-      // 'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
   });
 }
 
 
 searchButton.addEventListener("click", function(){
   searchVideos(searchText.value);
+});
+
+document.addEventListener("keypress", function(event){
+  if (event.key === "Enter"){
+    searchVideos(searchText.value);
+  }
 });
