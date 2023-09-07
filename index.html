@@ -8,42 +8,63 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <header>
-        <div class="search-container">
+    <header id="titleBar">          
+          <div class="top-bar" id="responsive-menu">
+            <div class="top-bar-left">
+              <ul class="dropdown menu" data-dropdown-menu>
+                <li class="menu-text">Film Finder</li>
+                <li class="has-submenu">
+            </div>
+            <div class="top-bar-right">
+              <ul class="menu">
+                <li><input type="search" id="search" placeholder="Search"></li>
+                <li><button type="button" id="search-button" class="button">Search</button></li>
+              </ul>
+            </div>
+          </div>
+        <!-- <div class="search-container">
             <input type="text" id="search" placeholder="Search for a movie...">
             <button id="search-button">Search</button>
         </div>
+        <h1>Film Finder</h1>
+        <p>A place to find information about your favorite movies!</p> -->
     </header>
     <main>
-        <div class="movie-info">
+        <section class="movie-info">
             <div class="movie-image">
                 <!-- <img src="movie-poster.jpg" alt="Movie Poster"> -->
             </div>
             <div class="movie-details">
-                <h1>Movie Title</h1>
+                <h2>Movie Title</h2>
             </div>
-        </div>
-        <div>   <h2>Movie Details</h2>
-                <p>Release Date: <span id="release-date">January 1, 2023</span></p>
-                <p>Genre: <span id="genre">Action, Adventure</span></p>
-                <p>Cast: <span id="cast">Actor 1, Actor 2</span></p>
-                <p>Synopsis: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-        <div class="youtube-trailer-box">
-            <div class="youtube-trailer">
-                <h2>Trailer</h2>
-                <div id="player"></div>
-            </div>
-        </div>
-        <div class="rotten-tomatoes-box">
-            <div class="rotten-tomatoes">
-                <h2> Reviews</h2>
-                <p>Critics Score: <span id="critics-score">85%</span></p>
-                <p>Audience Score: <span id="audience-score">90%</span></p>
-                <p>Critics Consensus: <span id="critics-consensus">Lorem ipsum dolor sit amet.</span></p>
-                <a href="#" id="">Read More on </a>
-            </div>
-        </div>
+        </section>
+        <aside>
+            <p>Search History:</p>
+            <ul id="history-list">
+
+            </ul>
+        </aside>
+
+        <section id="youtube-trailer" class="section">
+            <h3>Trailer</h3>
+            <div id="player"></div>
+        </section>
+
+        <section class="section">  
+             <h3>Movie Details</h3>
+            <p>Release Date: <span id="release-date">January 1, 2023</span></p>
+            <p>Genre: <span id="genre">Action, Adventure</span></p>
+            <p>Cast: <span id="cast">Actor 1, Actor 2</span></p>
+            <p>Synopsis: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
+        
+        <section class="section">
+            <h3> Reviews</h3>
+            <p>Critics Score: <span id="critics-score">85%</span></p>
+            <p>Audience Score: <span id="audience-score">90%</span></p>
+            <p>Critics Consensus: <span id="critics-consensus">Lorem ipsum dolor sit amet.</span></p>
+            <a href="#" id="">Read More on </a>
+        </section>
     </main>
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="./script.js"></script>

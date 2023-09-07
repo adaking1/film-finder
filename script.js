@@ -1,6 +1,7 @@
 var searchText = document.querySelector("#search");
 var searchButton = document.querySelector("#search-button");
 var ytPlayer = document.querySelector("#player");
+var historyList = document.querySelector("#history-list");
 var videoId;
 var player;
 
@@ -14,6 +15,8 @@ function searchVideos(video) {
     var key = "&key=AIzaSyDefjXnp5D479WhFVN5_4WXCEdQ79NLuRU";
     var ytUrlPrefix = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=";
     var videoName = video + "+movie+trailer"
+
+    setHistory(video);
 
 
     fetch (ytUrlPrefix + videoName + key)
@@ -51,14 +54,67 @@ function iFrameAPIcall(){
 // It creates the youtube player in the iframe using the video id retreived from the data api call
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
-    height: '390',
-    width: '640',
+    height: '300',
+    width: '540',
     videoId: videoId,
     playerVars: {
       'playsinline': 1
     },
   });
 }
+
+function setHistory(data) {
+  var storageList = JSON.parse(localStorage.getItem("history"));
+
+  if (storageList === null){
+    localStorage.setItem("history", JSON.stringify(searchText.value));
+  }
+  else {
+    storageList = storageList.split(",");
+    if (storageList.length > 8){
+        storageList.shift();
+        localStorage.setItem("history", JSON.stringify(storageList + ", " + searchText.value));
+    }
+    else {
+        localStorage.setItem("history", JSON.stringify(storageList + ", " + searchText.value));
+    }
+  }
+}
+
+function getHistory(){
+  if (localStorage.getItem("history") !== null) {
+    var storage = JSON.parse(localStorage.getItem("history"));
+    var storageList = storage.split(",");
+       
+    for (var i=0; i<storageList.length; i++) {
+        var history = document.createElement("li");
+        var currentTitle = storageList[i];
+        history.classList.add("history");
+        history.textContent = currentTitle;
+        historyList.appendChild(history);
+        history.addEventListener("click", function(event){
+            searchText.value = event.target.textContent;
+            searchVideos(event.target.textContent);
+        });
+    }   
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+getHistory();
 
 
 searchButton.addEventListener("click", function(){
