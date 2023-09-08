@@ -33,7 +33,7 @@ function getApi() {
     if (searchText.includes(" ")){
         searchText = searchText.replace(" " , "+")
     }
-    console.log(requestUrl + searchText)
+    console.log(requestUrl + searchText, {mode: "no-cors"})
     //Fetches the URL and request value so the the .then function will respond
     fetch(requestUrl + searchText)
     //.then will return the response json
