@@ -22,20 +22,14 @@
               </ul>
             </div>
           </div>
-        <!-- <div class="search-container">
-            <input type="text" id="search" placeholder="Search for a movie...">
-            <button id="search-button">Search</button>
-        </div>
-        <h1>Film Finder</h1>
-        <p>A place to find information about your favorite movies!</p> -->
     </header>
     <main>
         <section class="movie-info">
             <div class="movie-image">
-                <!-- <img src="movie-poster.jpg" alt="Movie Poster"> -->
+                <img id="img" alt="Movie Poster">
             </div>
             <div class="movie-details">
-                <h2>Movie Title</h2>
+                <h2 id="movie-title"></h2>
             </div>
         </section>
         <aside>
@@ -51,41 +45,19 @@
         </section>
 
         <section class="section">  
-             <h3>Movie Details</h3>
-            <p>Release Date: <span id="release-date">January 1, 2023</span></p>
-            <p>Genre: <span id="genre">Action, Adventure</span></p>
-            <p>Cast: <span id="cast">Actor 1, Actor 2</span></p>
-            <p>Synopsis: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>Movie Details</h3>
+            <p>Release Date: <span id="release-date"></span></p>
+            <p>Genre: <span id="genre"></span></p>
+            <p>Cast: <span id="cast"></span></p>
+            <p>Synopsis: <span id = "plot"></span> </p>
+            
         </section>
         
-        <section class="section">
+        <section id="reviews" class="section">
             <h3> Reviews</h3>
-            <p>Critics Score: <span id="critics-score">85%</span></p>
-            <p>Audience Score: <span id="audience-score">90%</span></p>
-            <p>Critics Consensus: <span id="critics-consensus">Lorem ipsum dolor sit amet.</span></p>
-            <a href="#" id="">Read More on </a>
-        </section>
-                <h1 id = "movie-title"></h1>
-            </div>
-        </div>
-        <div>   <h2>Movie Details</h2>
-                <p>Release Date: <span id="release-date"></span></p>
-                <p>Genre: <span id="genre"></span></p>
-                <p>Cast: <span id="cast"></span></p>
-                <p>Synopsis: <span id = "plot"></span> </p>
-            </div>
-        <div class="youtube-trailer-box">
-            <div class="youtube-trailer">
-                <h2>Trailer</h2>
-                <div id="player"></div>
-            </div>
-        </div>
-        <div class="rotten-tomatoes-box">
-            <div id="rotten-tomatoes">
-                <h2>Reviews</h2>
 
-            </div>
-        </div>
+    
+        </section>
     </main>
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="./script.js"></script>

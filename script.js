@@ -1,4 +1,4 @@
-var searchbutton = document.getElementById('search-button')
+var searchButton = document.getElementById('search-button')
 var movieReview = document.getElementById("")
 var search = document.getElementById("search")
 var requestUrl = "https://www.omdbapi.com/?apikey=35da7c46&=";
@@ -6,9 +6,18 @@ var Release = document.getElementById("release-date")
 var genre = document.getElementById("genre")
 var cast = document.getElementById("cast")
 var plot = document.getElementById("plot")
-var reviews = document.getElementById("rotten-tomatoes")
+var reviews = document.getElementById("reviews")
 var image = document.getElementById("img")
 var title = document.getElementById("movie-title")
+var videoId;
+var player;
+var historyList = document.querySelector("#history-list");
+var ytPlayer = document.querySelector("#player");
+
+
+
+
+
 
 
 
@@ -38,22 +47,25 @@ function getApi() {
         Release.textContent = data.Released
         genre.textContent = data.Genre
         cast.textContent = data.Actors
-        plot.textContent =data.Plot
+        plot.textContent = data.Plot
         // image.src gets the Poster data
         image.src = data.Poster
         //this line will make the image poster unhidden from css and use the Poster image
         image.style.display = "block"
         //title variable recieves the Title
         title.textContent = data.Title
+
+        console.log(data.Title + "+" + data.Year);
+
+        setHistory(data);
+        searchVideos(data.Title + "+" + data.Year);
+        
         //getApi calls the data from the api to match the variables
         getApi1(data)
     })
 }
 
-// searchbutton is listening for a click to call the function above
-searchbutton.addEventListener('click', function() {
-    getApi();
-})
+
 // create a new function for recieving the ratings of the movie
 function getApi1(data) {
     console.log(reviews.children)
@@ -64,7 +76,7 @@ function getApi1(data) {
     for( var i = 0; i<data.Ratings.length;i++){
         // variables for generating the div containing the title and score of the Review guides
         var element = document.createElement("div");
-        var title = document.createElement("h3");
+        var title = document.createElement("h4");
         var score = document.createElement("p");
 
         title.textContent = data.Ratings[i].Source + ": ";
@@ -73,12 +85,7 @@ function getApi1(data) {
         element.appendChild(score)
         reviews.appendChild(element)
     }}
-var searchText = document.querySelector("#search");
-var searchButton = document.querySelector("#search-button");
-var ytPlayer = document.querySelector("#player");
-var historyList = document.querySelector("#history-list");
-var videoId;
-var player;
+
 
 // this function uses youtube's data api to search for the video id of the movie title that was searched
 // it then starts the youtube player api call
@@ -91,7 +98,6 @@ function searchVideos(video) {
     var ytUrlPrefix = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=";
     var videoName = video + "+movie+trailer"
 
-    setHistory(video);
 
 
     fetch (ytUrlPrefix + videoName + key)
@@ -142,22 +148,23 @@ function setHistory(data) {
   var storageList = JSON.parse(localStorage.getItem("history"));
 
   if (storageList === null){
-    localStorage.setItem("history", JSON.stringify(searchText.value));
+    localStorage.setItem("history", JSON.stringify(data.Title));
   }
   else {
     storageList = storageList.split(",");
     if (storageList.length > 8){
         storageList.shift();
-        localStorage.setItem("history", JSON.stringify(storageList + ", " + searchText.value));
+        localStorage.setItem("history", JSON.stringify(storageList + ", " + data.Title));
     }
     else {
-        localStorage.setItem("history", JSON.stringify(storageList + ", " + searchText.value));
+        localStorage.setItem("history", JSON.stringify(storageList + ", " + data.Title));
     }
   }
 }
 
 function getHistory(){
   if (localStorage.getItem("history") !== null) {
+    console.log("XXXXX");
     var storage = JSON.parse(localStorage.getItem("history"));
     var storageList = storage.split(",");
        
@@ -168,8 +175,8 @@ function getHistory(){
         history.textContent = currentTitle;
         historyList.appendChild(history);
         history.addEventListener("click", function(event){
-            searchText.value = event.target.textContent;
-            searchVideos(event.target.textContent);
+          search.value = event.target.textContent;
+          getApi();
         });
     }   
   }
@@ -191,13 +198,24 @@ function getHistory(){
 
 getHistory();
 
-
-searchButton.addEventListener("click", function(){
-  searchVideos(searchText.value);
+// searchbutton is listening for a click to call the function above
+searchButton.addEventListener('click', function() {
+  getApi();
 });
 
 document.addEventListener("keypress", function(event){
   if (event.key === "Enter"){
-    searchVideos(searchText.value);
+    getApi();
   }
 });
+
+
+// searchButton.addEventListener("click", function(){
+//   searchVideos(search.value);
+// });
+
+// document.addEventListener("keypress", function(event){
+//   if (event.key === "Enter"){
+//     searchVideos(search.value);
+//   }
+// });
