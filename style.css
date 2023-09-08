@@ -6,14 +6,19 @@ body {
 }
 
 /* Encabezado */
-header {
-    background-color: #333;
+/* header {
+    
     color: #fff;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+} */
+
+.dropdown {
+    background-color: #333;
 }
+
 
 .search-container {
     display: flex;
@@ -40,6 +45,7 @@ header {
 .movie-info {
     display: flex;
     align-items: center;
+    margin-left: 15%;
 }
 
 .movie-image img {
@@ -54,16 +60,39 @@ header {
 
 /* Estilos para el título */
 h1 {
-    color: #333;
+    color: white;
     font-size: 24px;
     margin: 0;
 }
 
 /* Estilos para los encabezados (h2) */
-h2 {
+h3 {
     color: #333;
     border-bottom: 2px solid #ff5722;
     padding-bottom: 5px;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    float: left;
+}
+
+
+#history-list {
+    display: flex;
+    flex-direction: column-reverse;
+    list-style: none;
+    text-align: center;
+}
+
+.history {
+    text-transform: capitalize;
+    
+}
+
+.section {
+    margin-left:15%;
 }
 
 /* Estilos para los spans con información */
@@ -83,15 +112,22 @@ a:hover {
 #img {
     display: none;}
 
-.youtube-trailer{
-display: flex;
-flex-wrap: wrap;
-flex-direction: column;
+#youtube-trailer{
+display: grid;
 }
 
 iframe {
     border-radius: 8px;
-    align-self: center;
+    justify-self: center;
     box-shadow: 5px 5px 5px slategrey;
+    margin-right: 15%;
 
+}
+
+
+@media screen and (max-width: 768px) {
+    iframe {
+        width: 75%;
+        height:fit-content;
+    }
 }

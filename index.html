@@ -8,39 +8,56 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <header>
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Search for a movie...">
-            <button id="search-button">Search</button>
-        </div>
+    <header id="titleBar">          
+          <div class="top-bar" id="responsive-menu">
+            <div class="top-bar-left">
+              <ul class="dropdown menu" data-dropdown-menu>
+                <li class="menu-text">Film Finder</li>
+                <li class="has-submenu">
+            </div>
+            <div class="top-bar-right">
+              <ul class="menu">
+                <li><input type="search" id="search" placeholder="Search"></li>
+                <li><button type="button" id="search-button" class="button">Search</button></li>
+              </ul>
+            </div>
+          </div>
     </header>
     <main>
-        <div class="movie-info">
+        <section class="movie-info">
             <div class="movie-image">
-                <!-- <img src="movie-poster.jpg" alt="Movie Poster"> -->
+                <img id="img" alt="Movie Poster">
             </div>
             <div class="movie-details">
-                <h1 id = "movie-title"></h1>
+                <h2 id="movie-title"></h2>
             </div>
-        </div>
-        <div>   <h2>Movie Details</h2>
-                <p>Release Date: <span id="release-date"></span></p>
-                <p>Genre: <span id="genre"></span></p>
-                <p>Cast: <span id="cast"></span></p>
-                <p>Synopsis: <span id = "plot"></span> </p>
-            </div>
-        <div class="youtube-trailer-box">
-            <div class="youtube-trailer">
-                <h2>Trailer</h2>
-                <div id="player"></div>
-            </div>
-        </div>
-        <div class="rotten-tomatoes-box">
-            <div id="rotten-tomatoes">
-                <h2>Reviews</h2>
+        </section>
+        <aside>
+            <p>Search History:</p>
+            <ul id="history-list">
 
-            </div>
-        </div>
+            </ul>
+        </aside>
+
+        <section id="youtube-trailer" class="section">
+            <h3>Trailer</h3>
+            <div id="player"></div>
+        </section>
+
+        <section class="section">  
+            <h3>Movie Details</h3>
+            <p>Release Date: <span id="release-date"></span></p>
+            <p>Genre: <span id="genre"></span></p>
+            <p>Cast: <span id="cast"></span></p>
+            <p>Synopsis: <span id = "plot"></span> </p>
+            
+        </section>
+        
+        <section id="reviews" class="section">
+            <h3> Reviews</h3>
+
+    
+        </section>
     </main>
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="./script.js"></script>
