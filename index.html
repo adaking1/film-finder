@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Trailer & Reviews App</title>
+    <title>Film Finder</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -12,7 +12,9 @@
           <div class="top-bar" id="responsive-menu">
             <div class="top-bar-left">
               <ul class="dropdown menu" data-dropdown-menu>
-                <li class="menu-text">Film Finder</li>
+                <li class="menu-text">
+                    <h1>Film Finder</h1>
+                </li>
                 <li class="has-submenu">
             </div>
             <div class="top-bar-right">
@@ -23,37 +25,53 @@
             </div>
           </div>
     </header>
+
+    <aside class="card" style="width: 13%;">
+        <div class="card-divider">
+          <h2>Search History:</h2>
+        </div>
+        <div class="card-section" id="history-list">
+          
+        </div>
+    </aside>
+
     <main>
-        <section class="movie-info">
-            <div class="movie-image">
-                <img id="img" alt="Movie Poster">
-            </div>
-            <div class="movie-details">
-                <h2 id="movie-title"></h2>
+        <section id="title-card" class="card">
+            <img id="img" alt="Movie Poster">
+            <div class="card-section">
+              <h2 id="movie-title"></h2>
             </div>
         </section>
-        <aside>
+
+        </section>
+        
+        <!-- <aside>
             <p>Search History:</p>
             <ul id="history-list">
 
             </ul>
-        </aside>
+        </aside> -->
+        <section id="opening-page">
+            <h2 id="opening-title">Film Finder</h2>
+            <p>Use the search bar at the top right of your screen to enter the name of a movie and find out information about it!</p>
 
-        <section id="youtube-trailer" class="section">
+        </section>
+
+        <section id="youtube-trailer" class="info-section">
             <h3>Trailer</h3>
             <div id="player"></div>
         </section>
 
-        <section class="section">  
+        <section id="movie-details" class="info-section">  
             <h3>Movie Details</h3>
-            <p>Release Date: <span id="release-date"></span></p>
-            <p>Genre: <span id="genre"></span></p>
-            <p>Cast: <span id="cast"></span></p>
-            <p>Synopsis: <span id = "plot"></span> </p>
+            <p id="release-date">Release Date:</p>
+            <p id="genre">Genre:</p>
+            <p id="cast">Cast:</p>
+            <p id ="plot">Synopsis:</p>
             
         </section>
         
-        <section id="reviews" class="section">
+        <section id="reviews" class="info-section">
             <h3> Reviews</h3>
 
     

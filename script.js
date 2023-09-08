@@ -13,6 +13,13 @@ var videoId;
 var player;
 var historyList = document.querySelector("#history-list");
 var ytPlayer = document.querySelector("#player");
+var sections = document.querySelector(".info-section");
+var opening = document.querySelector("#opening-page");
+var trailer = document.querySelector("#youtube-trailer");
+var details = document.querySelector("#movie-details");
+var titleCard = document.querySelector("#title-card");
+
+
 
 
 
@@ -33,35 +40,39 @@ function getApi() {
     if (searchText.includes(" ")){
         searchText = searchText.replace(" " , "+")
     }
-    console.log(requestUrl + searchText, {mode: "no-cors"})
+    console.log(requestUrl + searchText)
     //Fetches the URL and request value so the the .then function will respond
+  
+    opening.style.display = "none";
+    details.style.display = "block";
+    reviews.style.display = "block";
+    titleCard.style.display = "grid";
+    trailer.style.display = "grid";
     fetch(requestUrl + searchText)
     //.then will return the response json
     .then(function (response) {
         return response.json();
     }) 
-    // .then gets its data console.logged
+
     .then(function (data) {
-        console.log(data)
+
         // Variables recieve the data from the api to display the specific movie information
-        Release.textContent = data.Released
-        genre.textContent = data.Genre
-        cast.textContent = data.Actors
-        plot.textContent = data.Plot
+      Release.textContent = data.Released;
+      genre.textContent = data.Genre;
+      cast.textContent = data.Actors;
+      plot.textContent = data.Plot;
         // image.src gets the Poster data
-        image.src = data.Poster
+      image.src = data.Poster;
         //this line will make the image poster unhidden from css and use the Poster image
-        image.style.display = "block"
+      image.style.display = "block"
         //title variable recieves the Title
-        title.textContent = data.Title
+      title.textContent = data.Title;
 
-        console.log(data.Title + "+" + data.Year);
-
-        setHistory(data);
-        searchVideos(data.Title + "+" + data.Year);
+      setHistory(data);
+      searchVideos(data.Title + "+" + data.Year);
         
-        //getApi calls the data from the api to match the variables
-        getApi1(data)
+    
+      getApi1(data)
     })
 }
 
@@ -154,10 +165,10 @@ function setHistory(data) {
     storageList = storageList.split(",");
     if (storageList.length > 8){
         storageList.shift();
-        localStorage.setItem("history", JSON.stringify(storageList + ", " + data.Title));
+        localStorage.setItem("history", JSON.stringify(storageList + "," + data.Title));
     }
     else {
-        localStorage.setItem("history", JSON.stringify(storageList + ", " + data.Title));
+        localStorage.setItem("history", JSON.stringify(storageList + "," + data.Title));
     }
   }
 }
