@@ -152,4 +152,21 @@ iframe {
         width: 75%;
         height:fit-content;
     }
+
+    #title-card {
+        width: 100%;
+    }
+
+    #movie-title {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    #aside {
+        display: none;
+    }
+
+    .info-section {
+        margin: 0;
+    }
 }
