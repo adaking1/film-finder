@@ -18,7 +18,9 @@ var opening = document.querySelector("#opening-page");
 var trailer = document.querySelector("#youtube-trailer");
 var details = document.querySelector("#movie-details");
 var titleCard = document.querySelector("#title-card");
-
+var openingTitle = document.querySelector("#opening-title");
+var openingText = document.querySelector("#opening-text");
+var aside = document.querySelector("#aside");
 
 
 
@@ -42,12 +44,6 @@ function getApi() {
     }
     console.log(requestUrl + searchText)
     //Fetches the URL and request value so the the .then function will respond
-  
-    opening.style.display = "none";
-    details.style.display = "block";
-    reviews.style.display = "block";
-    titleCard.style.display = "grid";
-    trailer.style.display = "grid";
     fetch(requestUrl + searchText)
     //.then will return the response json
     .then(function (response) {
@@ -55,31 +51,50 @@ function getApi() {
     }) 
 
     .then(function (data) {
-
+      if (data.Error) {
+        console.log(details.style.display);
+        if (details.style.display === "block"){
+          details.style.display = "none";
+          reviews.style.display = "none";
+          titleCard.style.display = "none";
+          trailer.style.display = "none";
+          opening.style.display = "block";
+        }
+        openingTitle.textContent = data.Error;
+        openingText.style.display = "none";
+      }
+      else {
+        opening.style.display = "none";
+        details.style.display = "block";
+        reviews.style.display = "block";
+        titleCard.style.display = "grid";
+        trailer.style.display = "grid";
+      
         // Variables recieve the data from the api to display the specific movie information
-      Release.textContent = data.Released;
-      genre.textContent = data.Genre;
-      cast.textContent = data.Actors;
-      plot.textContent = data.Plot;
-        // image.src gets the Poster data
-      image.src = data.Poster;
-        //this line will make the image poster unhidden from css and use the Poster image
-      image.style.display = "block"
-        //title variable recieves the Title
-      title.textContent = data.Title;
+        Release.textContent = data.Released;
+        genre.textContent = data.Genre;
+        cast.textContent = data.Actors;
+        plot.textContent = data.Plot;
+          // image.src gets the Poster data
+        image.src = data.Poster;
+          //this line will make the image poster unhidden from css and use the Poster image
+        image.style.display = "block"
+          //title variable recieves the Title
+        title.textContent = data.Title;
 
-      setHistory(data);
-      searchVideos(data.Title + "+" + data.Year);
-        
-    
-      getApi1(data)
+        setHistory(data);
+        searchVideos(data.Title + "+" + data.Year);
+          
+      
+        getApi1(data)
+        console.log("aaaaaaaaaa");
+      }
     })
 }
 
 
 // create a new function for recieving the ratings of the movie
 function getApi1(data) {
-    console.log(reviews.children)
     while(reviews.children[1]) {
         reviews.removeChild(reviews.lastChild)
     }
@@ -116,6 +131,7 @@ function searchVideos(video) {
       return response.json();
     })
     .then(function(data){
+      console.log(data);
       videoId = data.items[0].id.videoId;
       if (player){
         player.destroy();
@@ -163,7 +179,7 @@ function setHistory(data) {
   }
   else {
     storageList = storageList.split(",");
-    if (storageList.length > 8){
+    if (storageList.length > 7){
         storageList.shift();
         localStorage.setItem("history", JSON.stringify(storageList + "," + data.Title));
     }
@@ -190,6 +206,9 @@ function getHistory(){
           getApi();
         });
     }   
+  }
+  else {
+    aside.style.display = "none";
   }
 }
 
