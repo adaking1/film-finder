@@ -1,8 +1,7 @@
 var searchButton = document.getElementById('search-button')
-var movieReview = document.getElementById("")
 var search = document.getElementById("search")
 var requestUrl = "https://www.omdbapi.com/?apikey=35da7c46&=";
-var Release = document.getElementById("release-date")
+var release = document.getElementById("release-date")
 var genre = document.getElementById("genre")
 var cast = document.getElementById("cast")
 var plot = document.getElementById("plot")
@@ -71,7 +70,8 @@ function getApi() {
         trailer.style.display = "grid";
       
         // Variables recieve the data from the api to display the specific movie information
-        Release.textContent = data.Released;
+        
+        release.textContent = data.Released;
         genre.textContent = data.Genre;
         cast.textContent = data.Actors;
         plot.textContent = data.Plot;
@@ -150,9 +150,8 @@ function searchVideos(video) {
 // this function loads the youtube iframe api code
 function iFrameAPIcall(){
   var tag = document.createElement('script');
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-
   tag.src = "https://www.youtube.com/iframe_api?key=AIzaSyDefjXnp5D479WhFVN5_4WXCEdQ79NLuRU";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 }
@@ -213,19 +212,6 @@ function getHistory(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 getHistory();
 
 // searchbutton is listening for a click to call the function above
@@ -238,14 +224,3 @@ document.addEventListener("keypress", function(event){
     getApi();
   }
 });
-
-
-// searchButton.addEventListener("click", function(){
-//   searchVideos(search.value);
-// });
-
-// document.addEventListener("keypress", function(event){
-//   if (event.key === "Enter"){
-//     searchVideos(search.value);
-//   }
-// });
