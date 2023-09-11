@@ -1,8 +1,7 @@
 var searchButton = document.getElementById('search-button')
-var movieReview = document.getElementById("")
 var search = document.getElementById("search")
 var requestUrl = "https://www.omdbapi.com/?apikey=35da7c46&=";
-var Release = document.getElementById("release-date")
+var release = document.getElementById("release-date")
 var genre = document.getElementById("genre")
 var cast = document.getElementById("cast")
 var plot = document.getElementById("plot")
@@ -18,19 +17,10 @@ var opening = document.querySelector("#opening-page");
 var trailer = document.querySelector("#youtube-trailer");
 var details = document.querySelector("#movie-details");
 var titleCard = document.querySelector("#title-card");
+var openingTitle = document.querySelector("#opening-title");
+var openingText = document.querySelector("#opening-text");
+var aside = document.querySelector("#aside");
 
-
-
-
-
-
-
-
-
-
-var formSubmitHandler = function (event) {
-    event.preventDefault();
-}
 
 //function getting information from api to display the data to the console and web page
 function getApi() {
@@ -40,14 +30,7 @@ function getApi() {
     if (searchText.includes(" ")){
         searchText = searchText.replace(" " , "+")
     }
-    console.log(requestUrl + searchText)
     //Fetches the URL and request value so the the .then function will respond
-  
-    opening.style.display = "none";
-    details.style.display = "block";
-    reviews.style.display = "block";
-    titleCard.style.display = "grid";
-    trailer.style.display = "grid";
     fetch(requestUrl + searchText)
     //.then will return the response json
     .then(function (response) {
@@ -55,31 +38,49 @@ function getApi() {
     }) 
 
     .then(function (data) {
-
+      if (data.Error) {
+        if (details.style.display === "block"){
+          details.style.display = "none";
+          reviews.style.display = "none";
+          titleCard.style.display = "none";
+          trailer.style.display = "none";
+          opening.style.display = "block";
+        }
+        openingTitle.textContent = data.Error;
+        openingText.style.display = "none";
+      }
+      else {
+        opening.style.display = "none";
+        details.style.display = "block";
+        reviews.style.display = "block";
+        titleCard.style.display = "grid";
+      
         // Variables recieve the data from the api to display the specific movie information
-      Release.textContent = data.Released;
-      genre.textContent = data.Genre;
-      cast.textContent = data.Actors;
-      plot.textContent = data.Plot;
-        // image.src gets the Poster data
-      image.src = data.Poster;
-        //this line will make the image poster unhidden from css and use the Poster image
-      image.style.display = "block"
-        //title variable recieves the Title
-      title.textContent = data.Title;
-
-      setHistory(data);
-      searchVideos(data.Title + "+" + data.Year);
         
-    
-      getApi1(data)
+        release.textContent = data.Released;
+        genre.textContent = data.Genre;
+        cast.textContent = data.Actors;
+        plot.textContent = data.Plot;
+          // image.src gets the Poster data
+        image.src = data.Poster;
+          //this line will make the image poster unhidden from css and use the Poster image
+        image.style.display = "block"
+          //title variable recieves the Title
+        title.textContent = data.Title;
+
+        setHistory(data);
+        searchVideos(data.Title + "+" + data.Year);
+          
+      
+        getApi1(data)
+        console.log("aaaaaaaaaa");
+      }
     })
 }
 
 
 // create a new function for recieving the ratings of the movie
 function getApi1(data) {
-    console.log(reviews.children)
     while(reviews.children[1]) {
         reviews.removeChild(reviews.lastChild)
     }
@@ -134,9 +135,8 @@ function searchVideos(video) {
 // this function loads the youtube iframe api code
 function iFrameAPIcall(){
   var tag = document.createElement('script');
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-
   tag.src = "https://www.youtube.com/iframe_api?key=AIzaSyDefjXnp5D479WhFVN5_4WXCEdQ79NLuRU";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 }
@@ -163,7 +163,7 @@ function setHistory(data) {
   }
   else {
     storageList = storageList.split(",");
-    if (storageList.length > 8){
+    if (storageList.length > 7){
         storageList.shift();
         localStorage.setItem("history", JSON.stringify(storageList + "," + data.Title));
     }
@@ -175,7 +175,6 @@ function setHistory(data) {
 
 function getHistory(){
   if (localStorage.getItem("history") !== null) {
-    console.log("XXXXX");
     var storage = JSON.parse(localStorage.getItem("history"));
     var storageList = storage.split(",");
        
@@ -191,20 +190,10 @@ function getHistory(){
         });
     }   
   }
+  else {
+    aside.style.display = "none";
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 getHistory();
@@ -219,14 +208,3 @@ document.addEventListener("keypress", function(event){
     getApi();
   }
 });
-
-
-// searchButton.addEventListener("click", function(){
-//   searchVideos(search.value);
-// });
-
-// document.addEventListener("keypress", function(event){
-//   if (event.key === "Enter"){
-//     searchVideos(search.value);
-//   }
-// });

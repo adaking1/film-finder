@@ -1,19 +1,14 @@
-/* Estilos globales */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* Encabezado */
-/* header {
-    
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} */
+#titleBar {
+    margin-bottom: 10px;
+}
+
 #title-card {
     border: none;
 }
@@ -58,17 +53,19 @@ body {
     display: flex;
     align-items: center;
     margin-left: 15%;
+    
 }
 
 #title-card {
-    width: 50%;
     display: none;
-    justify-content: center;
-    text-align: center;
+    justify-content:space-evenly;
+    align-items: end;
+    text-align: center; 
+    grid-auto-flow: column;
 }
 
 img {
-    max-width: 200px;
+    max-width: 140px;
     height: auto;
     margin-right: 20px;
     
@@ -94,7 +91,6 @@ h2 {
 }
 
 
-/* Estilos para los encabezados (h2) */
 h3 {
     color: #333;
     border-bottom: 2px solid #ff5722;
@@ -144,6 +140,11 @@ iframe {
     box-shadow: 5px 5px 5px slategrey;
     margin-right: 15%;
 
+}
+
+.info {
+    font-weight: bold;
+    font-size: 25px;
 }
 
 
