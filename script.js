@@ -22,17 +22,6 @@ var openingText = document.querySelector("#opening-text");
 var aside = document.querySelector("#aside");
 
 
-
-
-
-
-
-
-
-var formSubmitHandler = function (event) {
-    event.preventDefault();
-}
-
 //function getting information from api to display the data to the console and web page
 function getApi() {
     var searchText = search.value
@@ -41,7 +30,6 @@ function getApi() {
     if (searchText.includes(" ")){
         searchText = searchText.replace(" " , "+")
     }
-    console.log(requestUrl + searchText)
     //Fetches the URL and request value so the the .then function will respond
     fetch(requestUrl + searchText)
     //.then will return the response json
@@ -51,7 +39,6 @@ function getApi() {
 
     .then(function (data) {
       if (data.Error) {
-        console.log(details.style.display);
         if (details.style.display === "block"){
           details.style.display = "none";
           reviews.style.display = "none";
@@ -67,7 +54,6 @@ function getApi() {
         details.style.display = "block";
         reviews.style.display = "block";
         titleCard.style.display = "grid";
-        trailer.style.display = "grid";
       
         // Variables recieve the data from the api to display the specific movie information
         
@@ -131,7 +117,6 @@ function searchVideos(video) {
       return response.json();
     })
     .then(function(data){
-      console.log(data);
       videoId = data.items[0].id.videoId;
       if (player){
         player.destroy();
@@ -190,7 +175,6 @@ function setHistory(data) {
 
 function getHistory(){
   if (localStorage.getItem("history") !== null) {
-    console.log("XXXXX");
     var storage = JSON.parse(localStorage.getItem("history"));
     var storageList = storage.split(",");
        
