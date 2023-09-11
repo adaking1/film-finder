@@ -14,7 +14,6 @@ var historyList = document.querySelector("#history-list");
 var ytPlayer = document.querySelector("#player");
 var sections = document.querySelector(".info-section");
 var opening = document.querySelector("#opening-page");
-var trailer = document.querySelector("#youtube-trailer");
 var details = document.querySelector("#movie-details");
 var titleCard = document.querySelector("#title-card");
 var openingTitle = document.querySelector("#opening-title");
