@@ -14,7 +14,6 @@ var historyList = document.querySelector("#history-list");
 var ytPlayer = document.querySelector("#player");
 var sections = document.querySelector(".info-section");
 var opening = document.querySelector("#opening-page");
-var trailer = document.querySelector("#youtube-trailer");
 var details = document.querySelector("#movie-details");
 var titleCard = document.querySelector("#title-card");
 var openingTitle = document.querySelector("#opening-title");
@@ -43,7 +42,7 @@ function getApi() {
           details.style.display = "none";
           reviews.style.display = "none";
           titleCard.style.display = "none";
-          trailer.style.display = "none";
+          // trailer.style.display = "none";
           opening.style.display = "block";
         }
         openingTitle.textContent = data.Error;
@@ -71,9 +70,7 @@ function getApi() {
         setHistory(data);
         searchVideos(data.Title + "+" + data.Year);
           
-      
         getApi1(data)
-        console.log("aaaaaaaaaa");
       }
     })
 }
@@ -135,6 +132,7 @@ function searchVideos(video) {
 // this function loads the youtube iframe api code
 function iFrameAPIcall(){
   var tag = document.createElement('script');
+
   tag.src = "https://www.youtube.com/iframe_api?key=AIzaSyDefjXnp5D479WhFVN5_4WXCEdQ79NLuRU";
   var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);

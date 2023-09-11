@@ -12,6 +12,7 @@
           <div class="top-bar" id="responsive-menu">
             <div class="top-bar-left">
               <ul class="dropdown menu" data-dropdown-menu>
+                <img id="film" src="./Film camera.jpg" alt="logo">
                 <li class="menu-text">
                     <h1>Film Finder</h1>
                 </li>
@@ -25,7 +26,8 @@
             </div>
           </div>
     </header>
-    <aside id="aside" class="card" style="width: 13%;">
+
+    <aside id="aside" class="card" style="width: 12%;">
         <div class="card-divider">
           <h2>Search History:</h2>
         </div>
@@ -36,16 +38,16 @@
 
     <main>
         <section id="title-card" class="card">
-            <div class="card-section">
-              <h2 id="movie-title"></h2>
-            <img id="img" alt="Movie Poster">
+            <h2 id="movie-title"></h2>
+            <div id="media">
+                <img id="img" alt="Movie Poster">
+                <div id="player"></div>
             </div>
-            <div id="player"></div>
         </section>
 
         <section id="opening-page">
             <h2 id="opening-title">Film Finder</h2>
-            <p id="opening-text">Enter a movie title at the top right of your screen to find out more about it!</p>
+            <p id="opening-text">Enter a movie title in the search bar to find out more about it!</p>
 
         </section>
 
@@ -60,8 +62,6 @@
         
         <section id="reviews" class="info-section">
             <h3> Reviews</h3>
-
-    
         </section>
     </main>
     <script src="https://apis.google.com/js/api.js"></script>
