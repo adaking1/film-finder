@@ -1,8 +1,11 @@
 # Film-Finder
 
+![image](https://github.com/adaking1/film-finder/assets/137830553/7252511f-e3db-404c-bb26-233e0446df49)
+
+
 ## Link
 
-[https://adaking1.github.io/weather-dashboard/](https://adaking1.github.io/film-finder/)
+https://adaking1.github.io/film-finder/
 
 ## Description
 
