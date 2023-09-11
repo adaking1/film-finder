@@ -71,9 +71,7 @@ function getApi() {
         setHistory(data);
         searchVideos(data.Title + "+" + data.Year);
           
-      
         getApi1(data)
-        console.log("aaaaaaaaaa");
       }
     })
 }
