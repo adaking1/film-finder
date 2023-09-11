@@ -65,6 +65,8 @@ body {
 
 #media {
     display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 img {
@@ -72,7 +74,7 @@ img {
     height: fit-content;
     border-radius: 5px;
     align-self: center;
-    margin-right: 15%;
+    margin-right: 150px;
 }
 
 #movie-title {
@@ -141,11 +143,16 @@ iframe {
     font-size: 25px;
 }
 
+@media screen and (max-width: 945px) {
+    img {
+        margin-right: 5px;
+    }
+}
 
 @media screen and (max-width: 778px) {
     iframe {
-        /* width: 85%;  */
-        /* height:fit-content; */
+        width: 400px;
+        height: 225px;
         align-self: center;
         margin-top: 10px;
     }
