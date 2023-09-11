@@ -1,4 +1,4 @@
-/* Estilos globales */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,15 +7,13 @@ body {
     background-color: rgba(255, 182, 46, 0.719);
 }
 
-/* Encabezado */
-/* header {
-    
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} */
+#titleBar {
+    margin-bottom: 10px;
+}
+
+#title-card {
+    border: none;
+}
 
 .dropdown {
     background-color: #333;
@@ -43,17 +41,41 @@ body {
     cursor: pointer;
 }
 
-/* Cajas alrededor de elementos */
+#opening-page {
+    text-align: center;
+    margin-top: 150px;
+    font-size: 25px;
+}
+
+#opening-title {
+    font-size: 50px;
+}
+
 .movie-info {
     display: flex;
     align-items: center;
     margin-left: 15%;
+    
 }
 
-.movie-image img {
-    max-width: 100px;
+#title-card {
+    display: none;
+    justify-content:space-evenly;
+    align-items: end;
+    text-align: center; 
+    grid-auto-flow: column;
+}
+
+img {
+    max-width: 140px;
     height: auto;
     margin-right: 20px;
+    
+    
+}
+
+#movie-title {
+    font-size: 35px;
 }
 
 .movie-details {
@@ -75,7 +97,11 @@ h2{
     color: gray;
 }
 
-/* Estilos para los encabezados (h2) */
+h2 {
+    font-size: 18px;
+}
+
+
 h3 {
     color: #333;
     border-bottom: 2px solid #ff5722;
@@ -107,30 +133,23 @@ aside {
     
 }
 
-.section {
+.info-section {
     margin-left:15%;
 
+    display: none;
 }
 
 /* Estilos para los spans con información */
-span {
-    font-weight: bold;
-}
 
 /* Enlaces */
-a {
+.history {
     color: #ff5722;
     text-decoration: none;
 }
 
-a:hover {
+.history:hover {
     text-decoration: underline;
-}
-#img {
-    display: none;}
-
-#youtube-trailer{
-display: grid;
+    cursor: pointer;
 }
 
 iframe {
@@ -139,6 +158,11 @@ iframe {
     box-shadow: 5px 5px 5px slategrey;
     margin-right: 15%;
 
+}
+
+.info {
+    font-weight: bold;
+    font-size: 25px;
 }
 
 
@@ -175,3 +199,16 @@ ul,
 .card-section{
     background: rgba(255, 182, 46, 0.719) !important;
 }
+
+ #title-card {
+        width: 100%;
+    }
+
+
+#aside {
+        display: none;
+    }
+
+.info-section {
+        margin: 0;
+    }
